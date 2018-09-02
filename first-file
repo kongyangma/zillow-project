@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+from pandas import Series,DataFrame
+import DataFrame as df
+import matplotlib
+
+data=pd.read_csv('C:/Users/kongy/Desktop/Datasets/Realtor_ZipCode_Historical_Data.csv',sep=',',encoding='utf-8',low_memory=False)
+
+data1=data[['Month', 'ZipCode', 'ZipName', 'Median Listing Price',
+       'Active Listing Count ', 'Days on Market ','New Listing Count ',
+       'New Listing Count Y/Y', 'Price Increase Count ',
+       'Price Decrease Count ','Pending Listing Count ',
+       'Avg Listing Price','Total Listing Count','Pending Ratio']]
+       
+a=data1[data1['ZipName']=='Kirkland, WA']
+b=data1[data1['ZipName']=='Bellevue, WA']
+c=data1[data1['ZipName']=='Redmond, WA']
+d=data1[data1['ZipName']=='Sammamish, WA']
+e=data1[data1['ZipName']=='Seattle, WA']
+e.iloc[1:3,1:3]
+
+frames=[a,b,c,d,e]
+
+datanew=pd.concat(frames)     #This is the table with info of Seattle, WA
+#King County includes: Bellevue, Kirkland, Redmond, Sammamish and Seattle 
+
+datanew=datanew.drop(columns=['New Listing Count Y/Y'])
+
+from matplotlib import pyplot as plt
+
+x=b['Month']
+y=b['Median Listing Price']
+plt.plot(x,y)
+
+
+ 
